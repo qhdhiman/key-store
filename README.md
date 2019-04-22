@@ -8,7 +8,7 @@ import KeyStore from '@stj/keystore'
 
 const ks = new KeyStore()
 
-let key = ks.generate() // or ks.uuid()
+let key = ks.generate() // or KeyStore.uuid()
 console.log(key) // sEmnFC07
 
 key = ks.generate('tag-name')
