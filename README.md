@@ -4,7 +4,7 @@
 demo
 
 ``` javascript
-import KeyStore from '@stj/key-store'
+import KeyStore from '@stj/keystore'
 
 const ks = new KeyStore()
 
