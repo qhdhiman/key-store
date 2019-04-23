@@ -26,19 +26,17 @@ export default class KeyStore {
    * @param {String} name 名称
    * @param {Function} format 格式化方法
    */
-  generate(name: string, format: Function) {
+  generate(name?: string, format?: Function) {
     if (!name) return KeyStore.uuid()
 
-
-    let exist = this.keys.filter(item => item[0] === name)
-    let rtnStr = ''
+    let exist = this.keys.filter(item => item[0] === name)[0]
+    let rtnStr = name
     if (exist === undefined) {
-      rtnStr = ''
       this.keys.push([name, 1])
     } else {
       let count = exist[1]
       rtnStr = `${name.toLowerCase()}${count}`
-      exist[1] = count
+      exist[1] = count + 1
     }
     return typeof format === 'function' ? format(rtnStr) : rtnStr
   }

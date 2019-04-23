@@ -17,16 +17,15 @@ var KeyStore = /** @class */ (function () {
     KeyStore.prototype.generate = function (name, format) {
         if (!name)
             return KeyStore.uuid();
-        var exist = this.keys.filter(function (item) { return item[0] === name; });
-        var rtnStr = '';
+        var exist = this.keys.filter(function (item) { return item[0] === name; })[0];
+        var rtnStr = name;
         if (exist === undefined) {
-            rtnStr = '';
             this.keys.push([name, 1]);
         }
         else {
             var count = exist[1];
             rtnStr = "" + name.toLowerCase() + count;
-            exist[1] = count;
+            exist[1] = count + 1;
         }
         return typeof format === 'function' ? format(rtnStr) : rtnStr;
     };
