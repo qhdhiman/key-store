@@ -7,7 +7,7 @@ var uuid = require("shortid");
  */
 var KeyStore = /** @class */ (function () {
     function KeyStore() {
-        this.keys = {};
+        this.keys = [];
     }
     /**
      * 根据传入名称，生成唯一值
@@ -17,14 +17,17 @@ var KeyStore = /** @class */ (function () {
     KeyStore.prototype.generate = function (name, format) {
         if (!name)
             return KeyStore.uuid();
-        var count = this.keys[name];
-        if (count === undefined) {
-            count = '';
-            this.keys[name] = 1;
+        var exist = this.keys.filter(function (item) { return item[0] === name; });
+        var rtnStr = '';
+        if (exist === undefined) {
+            rtnStr = '';
+            this.keys.push([name, 1]);
         }
-        else
-            this.keys[name] = count + 1;
-        var rtnStr = "" + name.toLowerCase() + count;
+        else {
+            var count = exist[1];
+            rtnStr = "" + name.toLowerCase() + count;
+            exist[1] = count;
+        }
         return typeof format === 'function' ? format(rtnStr) : rtnStr;
     };
     /**

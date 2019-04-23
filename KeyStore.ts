@@ -6,12 +6,12 @@ import * as uuid from 'shortid'
  */
 export default class KeyStore {
 
-  keys: object
+  keys: Array<[string, number]>
 
   static format = {
     /**
      * 格式化为驼峰结构
-     * @param {*} str 
+     * @param {*} str
      */
     camelCase (str: string) {
       return camelCase(str)
@@ -19,7 +19,7 @@ export default class KeyStore {
   }
 
   constructor () {
-    this.keys = {}
+    this.keys = []
   }
   /**
    * 根据传入名称，生成唯一值
@@ -29,13 +29,17 @@ export default class KeyStore {
   generate(name: string, format: Function) {
     if (!name) return KeyStore.uuid()
 
-    let count = this.keys[name]
-    if (count === undefined) {
-      count = ''
-      this.keys[name] = 1
+
+    let exist = this.keys.filter(item => item[0] === name)
+    let rtnStr = ''
+    if (exist === undefined) {
+      rtnStr = ''
+      this.keys.push([name, 1])
+    } else {
+      let count = exist[1]
+      rtnStr = `${name.toLowerCase()}${count}`
+      exist[1] = count
     }
-    else this.keys[name] = count+1
-    let rtnStr = `${name.toLowerCase()}${count}`
     return typeof format === 'function' ? format(rtnStr) : rtnStr
   }
 

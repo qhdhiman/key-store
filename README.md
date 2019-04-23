@@ -1,7 +1,11 @@
 # key-store
-唯一值生产期工具类
+唯一值生成器工具类
 
-demo
+## 使用说明
+
+``` node
+npm install @stj/keystore --save
+```
 
 ``` javascript
 import KeyStore from '@stj/keystore'
@@ -14,10 +18,10 @@ console.log(key) // sEmnFC07
 key = ks.generate('tag-name')
 console.log(key) // tag-name
 
-key = ks.generate('tagName')
+key = ks.generate('tag-name')
 console.log(key) // tag-name1
 
-key = ks.generate('tagName')
+key = ks.generate('tag-name')
 console.log(key) // tag-name2
 
 key = ks.generate('tag-name', KeyStore.format.camelCase)
