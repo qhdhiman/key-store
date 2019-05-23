@@ -1,11 +1,12 @@
 {
   "name": "@stj/keystore",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "唯一值生成器工具类",
   "author": "qhdhiman <qhdhiman@qq.com> (https://github.com/qhdhiman)",
   "main": "KeyStore.js",
   "dependencies": {
     "@types/shortid": "0.0.29",
+    "camelcase": "^5.3.1",
     "shortid": "^2.2.14"
   },
   "keywords": [
