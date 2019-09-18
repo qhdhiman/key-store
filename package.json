@@ -1,6 +1,6 @@
 {
   "name": "@stj/keystore",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "唯一值生成器工具类",
   "author": "qhdhiman <qhdhiman@qq.com> (https://github.com/qhdhiman)",
   "main": "KeyStore.js",

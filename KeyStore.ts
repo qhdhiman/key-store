@@ -13,8 +13,8 @@ export default class KeyStore {
      * 格式化为驼峰结构
      * @param {*} str
      */
-    camelCase (str: string) {
-      return camelCase(str)
+    camelCase (str: string, options?) {
+      return camelCase(str, options)
     }
   }
 
@@ -25,8 +25,9 @@ export default class KeyStore {
    * 根据传入名称，生成唯一值
    * @param {String} name 名称
    * @param {Function} format 格式化方法
+   * @param {Any} options 格式化方法 参数
    */
-  generate(name?: string, format?: Function) {
+  generate(name?: string, format?: Function, ...options) {
     if (!name) return KeyStore.uuid()
 
     let exist = this.keys.filter(item => item[0] === name)[0]
@@ -38,7 +39,7 @@ export default class KeyStore {
       rtnStr = `${name.toLowerCase()}${count}`
       exist[1] = count + 1
     }
-    return typeof format === 'function' ? format(rtnStr) : rtnStr
+    return typeof format === 'function' ? format(rtnStr, ...options) : rtnStr
   }
 
   /**

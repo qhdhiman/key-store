@@ -1,14 +1,4 @@
-# key-store
-唯一值生成器工具类
-
-## 使用说明
-
-``` node
-npm install @stj/keystore --save
-```
-
-``` javascript
-import KeyStore from '@stj/keystore' // Node? const KeyStore = require('@stj/keystore').default
+const KeyStore = require('./KeyStore').default
  
 const ks = new KeyStore()
  
@@ -26,5 +16,3 @@ console.log(key) // tag-name2
  
 key = ks.generate('tag-name', KeyStore.format.camelCase, {pascalCase: true})
 console.log(key) // TagName3
-
-```
